@@ -1117,7 +1117,7 @@ esp_err_t esp_eth_init_internal(eth_config_t *config)
     if (emac_config.clock_mode != ETH_CLOCK_GPIO0_IN) {
 #if CONFIG_SPIRAM_SUPPORT
         // make sure Ethernet won't have conflict with PSRAM
-        if (emac_config.clock_mode >= ETH_CLOCK_GPIO16_OUT) {
+        /*if (emac_config.clock_mode >= ETH_CLOCK_GPIO16_OUT) {
             if (esp_spiram_is_initialized()) {
                 ESP_LOGE(TAG, "GPIO16 and GPIO17 are occupied by PSRAM, please switch to ETH_CLOCK_GPIO_IN or ETH_CLOCK_GPIO_OUT mode");
                 ret = ESP_FAIL;
@@ -1125,7 +1125,7 @@ esp_err_t esp_eth_init_internal(eth_config_t *config)
             } else {
                 ESP_LOGW(TAG, "Using GPIO16/17 to output Ethernet RMII clock, make sure you don't have PSRAM on board");
             }
-        }
+        }*/
 #endif
         // 50 MHz = 40MHz * (6 + 4) / (2 * (2 + 2) = 400MHz / 8
         rtc_clk_apll_enable(1, 0, 0, 6, 2);
